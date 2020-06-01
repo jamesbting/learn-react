@@ -1,0 +1,28 @@
+<body>
+  <div id="root">
+    <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+      const Message = (props) => (
+        <div className="message">{props.children}</div>
+      ); //message function
+      //using a capital letter lets react/babel that his is a react component
+      //the 2 methods are functionally equivalent
+      //we can also pass any react components to this as well
+      const element = (
+        <div className="container">
+          <Message>
+            Hello World
+            <Message children="Goodbye World" />
+            <span>Hey There</span>
+          </Message>
+        </div>
+      );
+
+      console.log(<Message> Hello World</Message>);
+
+      ReactDOM.render(element, document.getElementById("root"));
+    </script>
+  </div>
+</body>

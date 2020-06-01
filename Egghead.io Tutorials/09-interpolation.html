@@ -1,0 +1,34 @@
+<body>
+  <div id="root">
+    <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      // The text "Hello World" has 11 characters
+      // The text "" has 0 characters
+      function CharacterCount({ text }) {
+        //javascript
+        return (
+          <div>
+            {`The text "${text}" has `}
+            {text.length ? <strong>{text.length}</strong> : "no"}
+            {" characters"}
+          </div>
+          //javascript
+          //within the <> and not in the {} that is jsx
+        );
+      }
+
+      const element = (
+        <>
+          <CharacterCount text="Hello World" />
+          <CharacterCount text="" />
+        </>
+      );
+
+      ReactDOM.render(element, rootElement);
+    </script>
+  </div>
+</body>
