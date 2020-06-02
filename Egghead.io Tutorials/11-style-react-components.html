@@ -1,40 +1,66 @@
-<body>
-  <div id="root">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your react app</title>
     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <style>
       .box {
-        border: 1px solid #333;
+        border: 1px solid black;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
       }
+
       .box--large {
         width: 270px;
         height: 270px;
       }
+
       .box--medium {
         width: 180px;
         height: 180px;
       }
+
       .box--small {
         width: 90px;
         height: 90px;
       }
     </style>
-    <script type="text/babel">
-      const rootElement = document.getElementById("root");
-      const element = (
-        <div>
-          <div className="box box--small">small lightblue box</div>
-        </div>
-      );
+  </head>
+  <body>
+    <div id="root">
+      <script type="text/babel">
+        function Box({ className = "", style, size, ...rest }) {
+          const sizeClassName = size ? `box--${size}` : "";
+          const props = {
+            className: `box ${className} ${sizeClassName}`.trim(),
+            style: { fontStyle: "italic", ...style },
+            ...rest,
+          };
+          return <div {...props} />;
+        }
 
-      console.log(element);
+        const rootElement = document.getElementById("root");
+        const element = (
+          <div>
+            <Box size="small" style={{ backgroundColor: "lightblue" }}>
+              small lightblue box
+            </Box>
 
-      ReactDOM.render(element, rootElement);
-    </script>
-  </div>
-</body>
+            <Box size="medium" style={{ backgroundColor: "pink" }}>
+              medium lightblue box
+            </Box>
+
+            <Box size="large" style={{ backgroundColor: "orange" }}>
+              large lightblue box
+            </Box>
+          </div>
+        );
+        ReactDOM.render(element, rootElement);
+      </script>
+    </div>
+  </body>
+</html>
